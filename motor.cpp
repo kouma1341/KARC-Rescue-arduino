@@ -1,91 +1,91 @@
 /*
       前
- 1----------2
- |          |
- |          |
- |          |
- |          |
- 3----------4
+  1----------2
+  |          |
+  |          |
+  |          |
+  |          |
+  3----------4
 
 */
 #include "Arduino.h"
 #include "motor.h"
 
-Motor::Motor(uint8_t aAIN1,uint8_t aAIN2,uint8_t aPWMA,uint8_t aBIN1,uint8_t aBIN2,uint8_t aPWMB,uint8_t bAIN1,uint8_t bAIN2,uint8_t bPWMA,uint8_t bBIN1,uint8_t bBIN2,uint8_t bPWMB)
+Motor::Motor(int 1IN1, int 1IN2, int 1PWM, int 2IN1, int 2IN2, int 2PWM, int 3IN1, int 3IN2, int 3PWM, int 4IN1, int 4IN2, int 4PWM)
 {
-  pinMode(aAIN1,OUTPUT);
-  pinMode(aAIN2,OUTPUT);
-  pinMode(aPWMA,OUTPUT);
-  pinMode(aBIN1,OUTPUT);
-  pinMode(aBIN2,OUTPUT);
-  pinMode(aPWMB,OUTPUT);
-  pinMode(bAIN1,OUTPUT);
-  pinMode(bAIN2,OUTPUT);
-  pinMode(bPWMA,OUTPUT);
-  pinMode(bBIN1,OUTPUT);
-  pinMode(bBIN2,OUTPUT);
-  pinMode(bPWMB,OUTPUT);
-  _aAIN1 = aAIN1;
-  _aAIN2 = aAIN2;
-  _aPWMA = aPWMA;
-  _aBIN1 = aBIN1;
-  _aBIN2 = aBIN2;
-  _aPWMB = aPWMB;
-  _bAIN1 = bAIN1;
-  _bAIN2 = bAIN2;
-  _bPWMA = bPWMA;
-  _bBIN1 = bBIN1;
-  _bBIN2 = bBIN2;
-  _bPWMB = bPWMB;
+  pinMode(1IN1, OUTPUT);
+  pinMode(1IN2, OUTPUT);
+  pinMode(1PWM, OUTPUT);
+  pinMode(2IN1, OUTPUT);
+  pinMode(2IN2, OUTPUT);
+  pinMode(2PWM, OUTPUT);
+  pinMode(3IN1, OUTPUT);
+  pinMode(3IN2, OUTPUT);
+  pinMode(3PWM, OUTPUT);
+  pinMode(4IN1, OUTPUT);
+  pinMode(4IN2, OUTPUT);
+  pinMode(4PWM, OUTPUT);
+  _1IN1 = 1IN1;
+  _1IN2 = 1IN2;
+  _1PWM = 1PWM;
+  _2IN1 = 2IN1;
+  _2IN2 = 2IN2;
+  _2PWM = 2PWM;
+  _3IN1 = 3IN1;
+  _3IN2 = 3IN2;
+  _3PWM = 3PWM;
+  _4IN1 = 4IN1;
+  _4IN2 = 4IN2;
+  _4PWM = 4PWM;
 }
 
-void Motor::mc(int m1,int m2,int m3,int m4,int del)
+void Motor::mc(int m1, int m2, int m3, int m4, int del)
 {
   m1 *= 2.55;
   m2 *= 2.55;
   m3 *= 2.55;
   m4 *= 2.55;
-  if(m1 >= 0)
+  if (m1 >= 0)
   {
-    digitalWrite(_aAIN1,HIGH);
-    digitalWrite(_aAIN2,LOW); 
-  }else{
+    digitalWrite(_1IN1, HIGH);
+    digitalWrite(_1IN2, LOW);
+  } else {
     m1 *= -1;
-    digitalWrite(_aAIN1,LOW);
-    digitalWrite(_aAIN2,HIGH); 
+    digitalWrite(_1IN1, LOW);
+    digitalWrite(_1IN2, HIGH);
   }
-  if(m2 > 0)
+  if (m2 > 0)
   {
-    digitalWrite(_aBIN1,HIGH);
-    digitalWrite(_aBIN2,LOW); 
-  }else{
+    digitalWrite(_2IN1, HIGH);
+    digitalWrite(_2IN2, LOW);
+  } else {
     m2 *= -1;
-    digitalWrite(_aBIN1,LOW);
-    digitalWrite(_aBIN2,HIGH); 
+    digitalWrite(_2IN1, LOW);
+    digitalWrite(_2IN2, HIGH);
   }
-  if(m3 > 0)
+  if (m3 > 0)
   {
-    digitalWrite(_bAIN1,HIGH);
-    digitalWrite(_bAIN2,LOW); 
-  }else{
+    digitalWrite(_3IN1, HIGH);
+    digitalWrite(_3IN2, LOW);
+  } else {
     m3 *= -1;
-    digitalWrite(_bAIN1,LOW);
-    digitalWrite(_bAIN2,HIGH); 
+    digitalWrite(_3IN1, LOW);
+    digitalWrite(_3IN2, HIGH);
   }
-  if(m4 > 0)
+  if (m4 > 0)
   {
-    digitalWrite(_bBIN1,HIGH);
-    digitalWrite(_bBIN2,LOW); 
-  }else{
+    digitalWrite(_4IN1, HIGH);
+    digitalWrite(_4IN2, LOW);
+  } else {
     m4 *= -1;
-    digitalWrite(_bBIN1,LOW);
-    digitalWrite(_bBIN2,HIGH); 
+    digitalWrite(_4IN1, LOW);
+    digitalWrite(_4IN2, HIGH);
   }
-  analogWrite(_aPWMA,m1);
-  analogWrite(_aPWMB,m2);
-  analogWrite(_bPWMA,m3);
-  analogWrite(_bPWMB,m4);
+  analogWrite(_1PWM, m1);
+  analogWrite(_2PWM, m2);
+  analogWrite(_3PWM, m3);
+  analogWrite(_4PWM, m4);
   delay(del);
-  
+
 
 }
